@@ -1,7 +1,7 @@
 
 
 function newfallingpiece() {
-    console.log(fastmoveyarr , fastmovexarr )
+    console.log(fastmoveyarr, fastmovexarr)
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -52,8 +52,8 @@ function goai() {
     }
     y = model.fallingPiece.y
     x = model.fallingPiece.x;
-    console.log(scorearray,xarray,rarray)
-    
+    //console.log(scorearray,xarray,rarray)
+
     chooseandputposition();
 }
 
@@ -64,7 +64,7 @@ function chooseandputposition() {
 
     if (rtarget != 0) {
         for (ii = 0; ii < rtarget; ii++) {
-             model.rotate();
+            model.rotate();
         }
     }
 
@@ -90,7 +90,7 @@ function chooseandputposition() {
             }
         }
     }
- 
+
 
     /* for (let w = 0; w < 20; w++) {
          console.log(model.grid[w] + "")
@@ -121,9 +121,9 @@ function calculatescore(gridtest, shape) {
     if (zy < 20) {
         for (let w = 0; w < zx; w++) {
             if (gridtest[zy][(x + w)] != 0) {
-                score = score + noholesbeneath*zy
+                score = score + noholesbeneath * zy
             } else {
-                score = score + holesbeneath /zy
+                score = score + holesbeneath / zy
                 aretheymoreholesbenath(gridtest, zy + 1, x + w)
             }
         }
@@ -131,13 +131,11 @@ function calculatescore(gridtest, shape) {
         for (let w = 0; w < zx; w++) {
             if (gridtest[19][(x + w)] != 0) {
 
-                score = score + noholesbeneath *zy
+                score = score + noholesbeneath * zy
             }
         }
     }
     ////////////////////Perfectly functionning////////////////////////////// 
-
-
     zy -= 1;
     let d = Math.max(...highestheight);
     if (zy > d) {
@@ -155,16 +153,18 @@ function calculatescore(gridtest, shape) {
         }
     }
 
-/////////////////////Perfectly functionning//////////////////////////////
-//jochimarea
-//hi
+    /////////////////////Perfectly functionning//////////////////////////////
+
+    //jochimarea
+    //hi
 
 
 
 
 
 
-//jochimarea
+    //jochimarea
+
     //checks for full lines
     const allFilled = (row) => {
         for (let x of row) {
@@ -185,8 +185,33 @@ function calculatescore(gridtest, shape) {
     scorearray.push(score)
     xarray.push(x)
     rarray.push(r)
+
+
+    zy = y + Math.max(...highestheight) - 1
+
+    if (fastmoveyarr.includes(zy)) {
+        var indexarr = fastmoveyarr.indexOf(zy)
+        var xt = fastmovexarr[indexarr]
+        if (xt > x) {
+            
+            console.log("to left")
+        }
+
+        else if (xt < x) {
+            console.log("to right")
+        }
+
+
+        yarray.push(y)
+        scorearray.push(score)
+        xarray.push(x)
+        rarray.push(r)
+    }
+
     /////////////////////Perfectly functionning//////////////////////////////
 }
+
+
 
 function aretheymoreholesbenath(gridtest, zy, w) {
     if (gridtest[zy] != null) {

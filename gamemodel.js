@@ -39,7 +39,8 @@ class gamemodel {
         return false
     }
     renderGameState() {
-
+        fastmoveyarr = []
+        fastmovexarr = []
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[i].length; j++) {
                 let cell = this.grid[i][j]
@@ -48,8 +49,7 @@ class gamemodel {
                 this.ctx.strokeRect(j, i, 1, 1)
 
                 //checkhole by itself
-                fastmoveyarr = []
-                fastmovexarr = []
+
                 if (this.grid[i][j] == 0) {
                     if (i != 0) {
                         if (this.grid[i - 1][j] != 0) {
