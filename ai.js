@@ -1,5 +1,5 @@
 function newfallingpiece() {
-   // console.log(fastmoveyarr, fastmovexarr)
+    // console.log(fastmoveyarr, fastmovexarr)
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -191,7 +191,14 @@ function calculatescore(gridtest, shape) {
         var indexarr = fastmoveyarr.indexOf(zy)
         var xt = fastmovexarr[indexarr]
         if (xt > x) {
-            
+
+            while (xtarget != x) {
+                if (collision(x, y + 1, shape)) {
+                    xtarget = x
+
+                }
+            }
+
             console.log("to left")
         }
 
@@ -204,9 +211,11 @@ function calculatescore(gridtest, shape) {
         scorearray.push(score)
         xarray.push(x)
         rarray.push(r)
+
     }
 
     /////////////////////Perfectly functionning//////////////////////////////
+
 }
 
 
