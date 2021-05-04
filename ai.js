@@ -156,7 +156,15 @@ function calculatescore(gridtest, shape) {
     }
 
 /////////////////////Perfectly functionning//////////////////////////////
+//jochimarea
 
+
+
+
+
+
+
+//jochimarea
     //checks for full lines
     const allFilled = (row) => {
         for (let x of row) {
