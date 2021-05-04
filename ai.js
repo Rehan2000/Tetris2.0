@@ -1,6 +1,5 @@
-
 function newfallingpiece() {
-    console.log(fastmoveyarr, fastmovexarr)
+   // console.log(fastmoveyarr, fastmovexarr)
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
