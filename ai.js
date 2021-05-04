@@ -1,5 +1,4 @@
 
-
 function newfallingpiece() {
     console.log(fastmoveyarr, fastmovexarr)
     shape = []
