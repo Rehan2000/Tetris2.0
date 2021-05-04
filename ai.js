@@ -28,26 +28,26 @@ function newfallingpiece() {
 }
 
 function goai() {
-    for (r = 0; r < 4; r++) {
-        for (var i = 0; i < COLS; i++) {
-            x = model.fallingPiece.x;
-            y = model.fallingPiece.y
-            for (var k = 0; k < originalarray.length; k++) {
-                grid[k] = originalarray[k].slice();
-            }
-            x = i
-
-            if (collision(x, y, shape) && y == 0) {
-                break;
-            } else {
-
-
-                calculatescore(grid, shape)
-                //console.log("---------------------------------------------------------------------")
-            }
+    //for (r = 0; r < 4; r++) {
+    for (var i = 0; i < COLS; i++) {
+        x = model.fallingPiece.x;
+        y = model.fallingPiece.y
+        for (var k = 0; k < originalarray.length; k++) {
+            grid[k] = originalarray[k].slice();
         }
-        rotateai(shape);
+        x = i
+
+        if (collision(x, y, shape) && y == 0) {
+            break;
+        } else {
+
+
+            calculatescore(grid, shape)
+            //console.log("---------------------------------------------------------------------")
+        }
     }
+    // rotateai(shape);
+    // }
     y = model.fallingPiece.y
     x = model.fallingPiece.x;
     //console.log(scorearray,xarray,rarray)
@@ -191,26 +191,26 @@ function calculatescore(gridtest, shape) {
         var indexarr = fastmoveyarr.indexOf(zy)
         var xt = fastmovexarr[indexarr]
         if (xt > x) {
-
-            while (xtarget != x) {
-                if (collision(x, y + 1, shape)) {
-                    xtarget = x
-
-                }
-            }
-
-            console.log("to left")
-        }
-
-        else if (xt < x) {
             console.log("to right")
         }
 
+        else if (xt < x) {
 
-        yarray.push(y)
+            while (xt != x) {
+                moveai(false, x, y)
+                if (collision(x - 1, y, shape)) {
+                    xt = x
+                }
+
+            }
+            console.log("to left", x)
+        }
+
+
+        /*yarray.push(y)
         scorearray.push(score)
         xarray.push(x)
-        rarray.push(r)
+        rarray.push(r)*/
 
     }
 
@@ -218,6 +218,25 @@ function calculatescore(gridtest, shape) {
 
 }
 
+
+function moveai(right) {
+    if (this.fallingPiece === null) {
+        return
+    }
+
+    if (right) {
+        // move right
+        if (!collision(x + 1, y, shape)) {
+            x += 1
+
+        }
+    } else {
+        // move left
+        if (!collision(x - 1, y, shape)) {
+            x -= 1
+        }
+    }
+}
 
 
 function aretheymoreholesbenath(gridtest, zy, w) {
