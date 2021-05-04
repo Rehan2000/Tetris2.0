@@ -1,17 +1,7 @@
 
-shape = []
-grid = []
-y = null
-x = null
-score = 0;
-scorearray = []
-xarray = []
-yarray = []
-rarray = []
-r = 0;
-originalarray = []
 
 function newfallingpiece() {
+    console.log(model.fallingPiece.shape[-1])
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -145,7 +135,7 @@ function calculatescore(gridtest, shape) {
             }
         }
     }
-    ////////////////////Perfectly functionning////////////////////////////// end
+    ////////////////////Perfectly functionning////////////////////////////// 
 
 
     zy -= 1;
@@ -165,7 +155,7 @@ function calculatescore(gridtest, shape) {
         }
     }
 
-
+/////////////////////Perfectly functionning//////////////////////////////
 
     //checks for full lines
     const allFilled = (row) => {
@@ -187,6 +177,7 @@ function calculatescore(gridtest, shape) {
     scorearray.push(score)
     xarray.push(x)
     rarray.push(r)
+    /////////////////////Perfectly functionning//////////////////////////////
 }
 
 function aretheymoreholesbenath(gridtest, zy, w) {
@@ -197,7 +188,7 @@ function aretheymoreholesbenath(gridtest, zy, w) {
             aretheymoreholesbenath(gridtest, zy + 1, w);
         }
     }
-}
+}/////////////////////Perfectly functionning//////////////////////////////
 
 function makeitgodown(shape, gridtest) {
     if (collision(x, y + 1, shape)) {
@@ -224,7 +215,7 @@ function makeitgodown(shape, gridtest) {
         gridtest = makeitgodown(shape, gridtest, x, y)
     }
     return gridtest;
-}
+}/////////////////////Perfectly functionning//////////////////////////////
 
 function collision(x, y, shape) {
     const n = shape.length
@@ -245,7 +236,7 @@ function collision(x, y, shape) {
         }
     }
     return false
-}
+}/////////////////////Perfectly functionning//////////////////////////////
 
 function rotateai() {
 
@@ -266,7 +257,7 @@ function rotateai() {
     if (!collision(xi, yi, shapetoreurn)) {
         shape = shapetoreurn;
     }
-}
+}/////////////////////Perfectly functionning//////////////////////////////
 
 function cheleftcol(shapetoreurn) {
     colmostleft = false;
@@ -300,7 +291,7 @@ function cheleftcol(shapetoreurn) {
         cheleftcol(shapetoreurn)
     }
 
-}
+}/////////////////////Perfectly functionning//////////////////////////////
 
 
 function sumArrays(...arrays) {
@@ -321,4 +312,4 @@ function removeElement(arrayName, arrayElement) {
         }
     }
     return arrayName;
-}
+}/////////////////////Perfectly functionning//////////////////////////////

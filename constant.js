@@ -7,8 +7,8 @@ const SCORE_WORTH = 100
 const SCORE_onepiece = 10
 const holesbeneath = -30
 const noholesbeneath = 10
-const scorenewline = 10000
-
+const scorenewline = 1000
+const fiilintheblanks = 30
 
 const endposition = -100
 const SHAPES = [
@@ -21,19 +21,7 @@ const SHAPES = [
         [1, 0, 0],
         [1, 1, 1],
         [0, 0, 0]
-    ],/* [
-        [1, 0, 0],
-        [1, 0, 0],
-        [1, 1, 0]
     ], [
-        [1, 1, 1],
-        [0, 0, 1],
-        [0, 0, 0]
-    ], [
-        [1, 1, 0],
-        [1, 0, 0],
-        [1, 0, 0]
-    ],*/ [
         [0, 0, 1],
         [1, 1, 1],
         [0, 0, 0]
@@ -64,3 +52,16 @@ const COLORS = [
     '#026EFF',
     '#FF0202',
 ]
+shape = []
+grid = []
+y = null
+x = null
+score = 0;
+scorearray = []
+xarray = []
+yarray = []
+rarray = []
+fastmoveyarr = []
+fastmovexarr = []
+r = 0;
+originalarray = []
