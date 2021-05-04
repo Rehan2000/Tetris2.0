@@ -157,7 +157,6 @@ function calculatescore(gridtest, shape) {
 
 /////////////////////Perfectly functionning//////////////////////////////
 //jochimarea
-//haha
 
 
 
