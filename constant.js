@@ -1,4 +1,4 @@
-const GAME_CLOCK = 10
+const GAME_CLOCK = 1000
 const BLOCK_SIDE_LENGTH = 30
 const ROWS = 20
 const COLS = 10
@@ -9,6 +9,7 @@ const holesbeneath = -30
 const noholesbeneath = 10
 const scorenewline = 1000
 const fiilintheblanks = 30
+const sideblocked = 10
 
 const endposition = -100
 const SHAPES = [
