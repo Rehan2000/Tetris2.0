@@ -1,7 +1,7 @@
 
 
 function newfallingpiece() {
-    console.log(model.fallingPiece.shape[-1])
+    console.log(fastmoveyarr , fastmovexarr )
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -157,7 +157,7 @@ function calculatescore(gridtest, shape) {
 
 /////////////////////Perfectly functionning//////////////////////////////
 //jochimarea
-
+//hi
 
 
 

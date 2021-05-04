@@ -39,14 +39,25 @@ class gamemodel {
         return false
     }
     renderGameState() {
-    
+
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[i].length; j++) {
                 let cell = this.grid[i][j]
-                
                 this.ctx.fillStyle = COLORS[cell]
                 this.ctx.fillRect(j, i, 1, 1)
                 this.ctx.strokeRect(j, i, 1, 1)
+
+                //checkhole by itself
+                fastmoveyarr = []
+                fastmovexarr = []
+                if (this.grid[i][j] == 0) {
+                    if (i != 0) {
+                        if (this.grid[i - 1][j] != 0) {
+                            fastmoveyarr.push(i)
+                            fastmovexarr.push(j)
+                        }
+                    }
+                }
 
             }
         }
@@ -127,12 +138,12 @@ class gamemodel {
             if (!this.collision(this.fallingPiece.x, this.fallingPiece.y, shape)) {
                 this.fallingPiece.shape = shape
             }
-        } 
+        }
         this.renderGameState()
-      
+
     }
 
-    checkleftcol(shapetoreurn){
+    checkleftcol(shapetoreurn) {
         this.colmostleft = false;
         for (let y = 0; y < shapetoreurn.length; ++y) {
             if (shapetoreurn[y][0] == 0) {
@@ -142,13 +153,13 @@ class gamemodel {
                 break;
             }
         }
-        if ( this.colmostleft) {
+        if (this.colmostleft) {
             for (let y = 0; y < shapetoreurn.length; ++y) {
-                for (let z = 0; z <( shapetoreurn.length-1); ++z) {
-                    shapetoreurn[y][z] = shapetoreurn[y][z+1]
+                for (let z = 0; z < (shapetoreurn.length - 1); ++z) {
+                    shapetoreurn[y][z] = shapetoreurn[y][z + 1]
                 }
-                shapetoreurn[y][shapetoreurn.length-1] = 0
-    
+                shapetoreurn[y][shapetoreurn.length - 1] = 0
+
             }
         }
         this.colmostleft = false;
@@ -160,10 +171,10 @@ class gamemodel {
                 break;
             }
         }
-        if ( this.colmostleft) {
+        if (this.colmostleft) {
             cheleftcol(shapetoreurn)
         }
-    
+
     }
 
 

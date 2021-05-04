@@ -14,7 +14,7 @@ newGameState = () => {
     fullSend()
     if (model.fallingPiece === null) {
         rand = Math.floor(Math.random() * 7)
-        rand = 0
+        rand = 4
         const newPiece = new piece(SHAPES[rand], ctx)
         model.fallingPiece = newPiece
         newfallingpiece();
@@ -22,7 +22,7 @@ newGameState = () => {
         scoree += SCORE_onepiece
         scoreboard.innerHTML = "Score: " + String(scoree)
     } else {
-        //model.moveDown()
+        model.moveDown()
      }
 }
 const fullSend = () => {
