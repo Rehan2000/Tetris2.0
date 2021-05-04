@@ -114,6 +114,7 @@ function chooseandputposition() {
 //check if holes on the matrix of the shape between
 //if closer to the bottom add points
 
+
 function calculatescore(gridtest, shape) {
     score = 0;
     highestwidth = [];
