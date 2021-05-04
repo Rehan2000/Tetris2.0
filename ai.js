@@ -111,8 +111,8 @@ function chooseandputposition() {
 //add points if on the side is full
 //better if hole on somewhere open instead of close
 //move piece at the end
-//check if holes on the matrix of the shape between
-//if closer to the bottom add points
+//check if holes on the matrix of the shape between done
+//if closer to the bottom add points done
 
 
 function calculatescore(gridtest, shape) {
