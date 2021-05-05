@@ -10,6 +10,7 @@ const noholesbeneath = 10
 const scorenewline = 1000
 const fiilintheblanks = 30
 const sideblocked = 10
+const closehole = 10
 
 const endposition = -100
 const SHAPES = [

@@ -44,12 +44,12 @@ function goai() {
         } else {
 
 
-            calculatescore(grid, shape)
-            //console.log("---------------------------------------------------------------------")
+                calculatescore(grid, shape)
+                //console.log("---------------------------------------------------------------------")
+            }
         }
-    }
-    // rotateai(shape);
-    // }
+       // rotateai(shape);
+  //  }
     y = model.fallingPiece.y
     x = model.fallingPiece.x;
     //console.log(scorearray,xarray,rarray)
@@ -180,12 +180,30 @@ function calculatescore(gridtest, shape) {
     /////////////////////Perfectly functionning//////////////////////////////
 
     //jochimarea
-    //hi
 
+    // add points if on the side is full
 
+    for (let i = 0; i < model.fallingPiece.shape.length; i++) {
+        tocontinue: for (let j = 0; j < model.fallingPiece.shape.length; j++) {
+            // checks if on the left there is a square that belongs to the model.fallingPiece.shape
+            // if (x+j === )
+            if (j > 0 && model.fallingPiece.shape[i][j - 1] === 0) {
+                if (j + x > 0 && gridtest[i][j + x - 1] === 0) {
+                    score += sideblocked
+                }
+            }
+            if (j < model.fallingPiece.shape[i].length - 1 && model.fallingPiece.shape[i][j + 1] === 0) {
+                if (j + x < gridtest[i].length - 1 && gridtest[i][j + x + 1] === 0) {
+                    score += sideblocked
+                }
+            }
+            if (x + j === 0 || x + j === gridtest[i].length) {
+                score += sideblocked
+            }
+        }
+    }
 
-
-
+    // better if hole on somewhere open instead of close
 
     //jochimarea
 
@@ -249,28 +267,8 @@ function calculatescore(gridtest, shape) {
     }
 
     /////////////////////Perfectly functionning//////////////////////////////
-
 }
 
-
-function moveai(right) {
-    if (this.fallingPiece === null) {
-        return
-    }
-
-    if (right) {
-        // move right
-        if (!collision(x + 1, y, shape)) {
-            x += 1
-
-        }
-    } else {
-        // move left
-        if (!collision(x - 1, y, shape)) {
-            x -= 1
-        }
-    }
-}
 
 
 function aretheymoreholesbenath(gridtest, zy, w) {
