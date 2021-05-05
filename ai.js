@@ -1,5 +1,5 @@
 function newfallingpiece() {
-    // console.log(fastmoveyarr, fastmovexarr)
+     console.log(fastmoveyarr, fastmovexarr)
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -269,6 +269,25 @@ function calculatescore(gridtest, shape) {
     /////////////////////Perfectly functionning//////////////////////////////
 }
 
+
+function moveai(right) {
+    if (this.fallingPiece === null) {
+        return
+    }
+
+    if (right) {
+        // move right
+        if (!collision(x + 1, y, shape)) {
+            x += 1
+
+        }
+    } else {
+        // move left
+        if (!collision(x - 1, y, shape)) {
+            x -= 1
+        }
+    }
+}
 
 
 function aretheymoreholesbenath(gridtest, zy, w) {
