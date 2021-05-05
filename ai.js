@@ -1,5 +1,5 @@
 function newfallingpiece() {
-   // console.log(fastmoveyarr, fastmovexarr)
+    // console.log(fastmoveyarr, fastmovexarr)
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -154,12 +154,32 @@ function calculatescore(gridtest, shape) {
     /////////////////////Perfectly functionning//////////////////////////////
 
     //jochimarea
-    //hi
 
+    // add points if on the side is full
+    // 0 1 0 --> 0
+    // 1 1 0 --> 1
+    // 0 1 1 --> 1
+    // 1 1 1 --> 2
 
-
-
-
+    for (let i = 0; i < model.fallingPiece.shape.length; i++) {
+        tocontinue: for (let j = 0; j < model.fallingPiece.shape.length; j++) {
+            // checks if on the left there is a square that belongs to the model.fallingPiece.shape
+            // if (x+j === )
+            if (j > 0 && model.fallingPiece.shape[i][j - 1] === 0) {
+                if (j + x > 0 && gridtest[i][j + x - 1] === 0) {
+                    score += sideblocked
+                }
+            }
+            if (j < model.fallingPiece.shape[i].length - 1 && model.fallingPiece.shape[i][j + 1] === 0) {
+                if (j + x < gridtest[i].length - 1 && gridtest[i][j + x + 1] === 0) {
+                    score += sideblocked
+                }
+            }
+            if (x + j === 0 || x + j === gridtest[i].length) {
+                score += sideblocked
+            }
+        }
+    }
 
     //jochimarea
 
@@ -191,7 +211,7 @@ function calculatescore(gridtest, shape) {
         var indexarr = fastmoveyarr.indexOf(zy)
         var xt = fastmovexarr[indexarr]
         if (xt > x) {
-            
+
             console.log("to left")
         }
 
