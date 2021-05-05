@@ -156,10 +156,6 @@ function calculatescore(gridtest, shape) {
     //jochimarea
 
     // add points if on the side is full
-    // 0 1 0 --> 0
-    // 1 1 0 --> 1
-    // 0 1 1 --> 1
-    // 1 1 1 --> 2
 
     for (let i = 0; i < model.fallingPiece.shape.length; i++) {
         tocontinue: for (let j = 0; j < model.fallingPiece.shape.length; j++) {
@@ -180,6 +176,8 @@ function calculatescore(gridtest, shape) {
             }
         }
     }
+
+    // better if hole on somewhere open instead of close
 
     //jochimarea
 
