@@ -14,7 +14,7 @@ newGameState = () => {
     fullSend()
     if (model.fallingPiece === null) {
         rand = Math.floor(Math.random() * 7)
-        rand = 4
+        rand = 5
         const newPiece = new piece(SHAPES[rand], ctx)
         model.fallingPiece = newPiece
         newfallingpiece();

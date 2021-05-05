@@ -20,6 +20,7 @@ function newfallingpiece() {
     xarray = []
     yarray = []
     rarray = []
+    xfast = []
     y = model.fallingPiece.y
     x = model.fallingPiece.x;
     r = 0;
@@ -28,6 +29,7 @@ function newfallingpiece() {
 }
 
 function goai() {
+    console.log(fastmoveyarr)
     //for (r = 0; r < 4; r++) {
     for (var i = 0; i < COLS; i++) {
         x = model.fallingPiece.x;
@@ -36,7 +38,7 @@ function goai() {
             grid[k] = originalarray[k].slice();
         }
         x = i
-
+        xinitialization = i
         if (collision(x, y, shape) && y == 0) {
             break;
         } else {
@@ -59,7 +61,8 @@ function chooseandputposition() {
     let i = scorearray.indexOf(Math.max(...scorearray));
     xtarget = xarray[i]
     rtarget = rarray[i]
-
+    xftarget = xfast[i]
+    ytarget = yarray[i]
     if (rtarget != 0) {
         for (ii = 0; ii < rtarget; ii++) {
             model.rotate();
@@ -88,11 +91,33 @@ function chooseandputposition() {
             }
         }
     }
-
-
-    /* for (let w = 0; w < 20; w++) {
-         console.log(model.grid[w] + "")
-     }*/
+    ////
+    if (xftarget != 0) {
+        while (y != ytarget) {
+            model.moveDown()
+            y = model.fallingPiece.y
+            x = model.fallingPiece.x;
+        }
+        if (xftarget < x) {
+            while (xftarget != x) {
+                model.move(false);
+                y = model.fallingPiece.y
+                x = model.fallingPiece.x;
+                if (collision(x, y + 1, shape)) {
+                    xftarget = x
+                }
+            }
+        } else if (xftarget > x) {
+            while (xftarget != x) {
+                model.move(true);
+                y = model.fallingPiece.y
+                x = model.fallingPiece.x;
+                if (collision(x, y + 1, shape)) {
+                    xftarget = x
+                }
+            }
+        }
+    }
 }
 
 //todo
@@ -104,6 +129,7 @@ function chooseandputposition() {
 
 
 function calculatescore(gridtest, shape) {
+    fastmovebool = false
     score = 0;
     highestwidth = [];
     highestheight = [];
@@ -182,36 +208,44 @@ function calculatescore(gridtest, shape) {
     yarray.push(y)
     scorearray.push(score)
     xarray.push(x)
+    xfast.push(0)
     rarray.push(r)
 
 
     zy = y + Math.max(...highestheight) - 1
+    for (let v = 0; v < fastmoveyarr.length; v++) {
+        if (fastmoveyarr.includes(zy)) {
+            var indexarr = fastmoveyarr.indexOf(zy)
+            var xt = fastmovexarr[indexarr]
 
-    if (fastmoveyarr.includes(zy)) {
-        var indexarr = fastmoveyarr.indexOf(zy)
-        var xt = fastmovexarr[indexarr]
-        if (xt > x) {
-            console.log("to right")
-        }
-
-        else if (xt < x) {
-
-            while (xt != x) {
-                moveai(false, x, y)
-                if (collision(x - 1, y, shape)) {
-                    xt = x
-                }
-
+            if (xt > x) {
+                console.log("to right")
             }
-            console.log("to left", x)
+
+            else if (xt < x) {
+                while (xt != x) {
+                    moveai(false, x, y)
+                    if (collision(x - 1, y, shape)) {
+                        xt = x
+                    }
+                }
+                console.log("to left", x, fastmovexarr[indexarr])
+            }
+            if (x == fastmovexarr[indexarr]) {
+                fastmovebool = true;
+                console.log("in it")
+                score += 30
+                yarray.push(y)
+                scorearray.push(score)
+                xarray.push(xinitialization)
+                xfast.push(xt)
+                rarray.push(r)
+            }
+            fastmovexarr.splice(indexarr, 1);
+            fastmoveyarr.splice(indexarr, 1);
+
+
         }
-
-
-        /*yarray.push(y)
-        scorearray.push(score)
-        xarray.push(x)
-        rarray.push(r)*/
-
     }
 
     /////////////////////Perfectly functionning//////////////////////////////
