@@ -8,7 +8,8 @@ const SCORE_onepiece = 10
 const holesbeneath = -30
 const noholesbeneath = 10
 const scorenewline = 1000
-const fiilintheblanks = 30
+const fiilintheblanks =100
+
 const sideblocked = 10
 const closehole = 10
 

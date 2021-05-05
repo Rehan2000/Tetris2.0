@@ -1,5 +1,5 @@
 function newfallingpiece() {
-     console.log(fastmoveyarr, fastmovexarr)
+    console.log(fastmoveyarr, fastmovexarr)
     shape = []
     for (var i = 0; i < model.fallingPiece.shape.length; i++) {
         shape[i] = []
@@ -30,7 +30,7 @@ function newfallingpiece() {
 
 function goai() {
     console.log(fastmoveyarr)
-    //for (r = 0; r < 4; r++) {
+     for (r = 0; r < 4; r++) {
     for (var i = 0; i < COLS; i++) {
         x = model.fallingPiece.x;
         y = model.fallingPiece.y
@@ -44,15 +44,15 @@ function goai() {
         } else {
 
 
-                calculatescore(grid, shape)
-                //console.log("---------------------------------------------------------------------")
-            }
+            calculatescore(grid, shape)
+            //console.log("---------------------------------------------------------------------")
         }
-       // rotateai(shape);
-  //  }
+    }
+      rotateai(shape);
+     }
     y = model.fallingPiece.y
     x = model.fallingPiece.x;
-    //console.log(scorearray,xarray,rarray)
+    console.log(scorearray)
 
     chooseandputposition();
 }
@@ -76,7 +76,7 @@ function chooseandputposition() {
             model.move(false);
             y = model.fallingPiece.y
             x = model.fallingPiece.x;
-            if (collision(x, y + 1, shape)) {
+            if (collision(x - 1, y, shape)) {
                 xtarget = x
             }
         }
@@ -86,7 +86,7 @@ function chooseandputposition() {
             model.move(true);
             y = model.fallingPiece.y
             x = model.fallingPiece.x;
-            if (collision(x, y + 1, shape)) {
+            if (collision(x + 1, y, shape)) {
                 xtarget = x
             }
         }
@@ -103,7 +103,7 @@ function chooseandputposition() {
                 model.move(false);
                 y = model.fallingPiece.y
                 x = model.fallingPiece.x;
-                if (collision(x, y + 1, shape)) {
+                if (collision(x, y , shape)) {
                     xftarget = x
                 }
             }
@@ -112,7 +112,7 @@ function chooseandputposition() {
                 model.move(true);
                 y = model.fallingPiece.y
                 x = model.fallingPiece.x;
-                if (collision(x, y + 1, shape)) {
+                if (collision(x, y , shape)) {
                     xftarget = x
                 }
             }
@@ -145,7 +145,7 @@ function calculatescore(gridtest, shape) {
     if (zy < 20) {
         for (let w = 0; w < zx; w++) {
             if (gridtest[zy][(x + w)] != 0) {
-                score = score + noholesbeneath * zy
+                score = score + noholesbeneath + zy * 10
             } else {
                 score = score + holesbeneath / zy
                 aretheymoreholesbenath(gridtest, zy + 1, x + w)
@@ -176,6 +176,7 @@ function calculatescore(gridtest, shape) {
             } zy = zy - 1
         }
     }
+    //holesin
 
     /////////////////////Perfectly functionning//////////////////////////////
 
@@ -183,7 +184,7 @@ function calculatescore(gridtest, shape) {
 
     // add points if on the side is full
 
-    for (let i = 0; i < model.fallingPiece.shape.length; i++) {
+    /*for (let i = 0; i < model.fallingPiece.shape.length; i++) {
         tocontinue: for (let j = 0; j < model.fallingPiece.shape.length; j++) {
             // checks if on the left there is a square that belongs to the model.fallingPiece.shape
             // if (x+j === )
@@ -201,7 +202,7 @@ function calculatescore(gridtest, shape) {
                 score += sideblocked
             }
         }
-    }
+    }*/
 
     // better if hole on somewhere open instead of close
 
@@ -237,7 +238,13 @@ function calculatescore(gridtest, shape) {
             var xt = fastmovexarr[indexarr]
 
             if (xt > x) {
-                console.log("to right")
+                while (xt != x) {
+                    moveai(true, x, y)
+                    if (collision(x + 1, y, shape)) {
+                        xt = x
+                    }
+                }
+                console.log("to right", x, fastmovexarr[indexarr], zy)
             }
 
             else if (xt < x) {
@@ -247,20 +254,20 @@ function calculatescore(gridtest, shape) {
                         xt = x
                     }
                 }
-                console.log("to left", x, fastmovexarr[indexarr])
+                console.log("to left", x, fastmovexarr[indexarr], zy)
             }
-            if (x == fastmovexarr[indexarr]) {
-                fastmovebool = true;
+            if (x == fastmovexarr[indexarr] && zy == fastmoveyarr[indexarr]) {
                 console.log("in it")
-                score += 30
+                score += fiilintheblanks
                 yarray.push(y)
                 scorearray.push(score)
                 xarray.push(xinitialization)
                 xfast.push(xt)
                 rarray.push(r)
+                console.log(fastmoveyarr, fastmovexarr)
+                fastmovexarr.splice(indexarr, 1);
+                fastmoveyarr.splice(indexarr, 1);
             }
-            fastmovexarr.splice(indexarr, 1);
-            fastmoveyarr.splice(indexarr, 1);
 
 
         }

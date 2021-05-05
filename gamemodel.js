@@ -50,15 +50,27 @@ class gamemodel {
 
                 //checkhole by itself
 
-                if (this.grid[i][j] == 0) {
+                /*if (this.grid[i][j] == 0) {
                     if (i != 0) {
                         if (this.grid[i - 1][j] != 0) {
                             fastmoveyarr.push(i)
                             fastmovexarr.push(j)
                         }
                     }
+                }*/
+                var t = i
+                if (this.grid[t][j] == 0) {
+                    while (t != 19) {
+                        t = t + 1
+                        if (this.grid[t][j] != 0) {
+                            console.log(t, j)
+                            if (j != fastmovexarr[fastmoveyarr.indexOf(t)]) {
+                                fastmoveyarr.push(t)
+                                fastmovexarr.push(j)
+                            }
+                        }
+                    }
                 }
-
             }
         }
 
