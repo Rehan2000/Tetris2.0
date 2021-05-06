@@ -41,7 +41,7 @@ class gamemodel {
     renderGameState() {
         fastmoveyarr = []
         fastmovexarr = []
-        for (let i = 0; i < this.grid.length; i++) {
+        for (let i = this.grid.length - 1; i > -1; i--) {
             for (let j = 0; j < this.grid[i].length; j++) {
                 let cell = this.grid[i][j]
                 this.ctx.fillStyle = COLORS[cell]
@@ -60,20 +60,26 @@ class gamemodel {
                 }*/
                 var t = i
                 if (this.grid[t][j] == 0) {
-                    while (t != 19) {
-                        t = t + 1
+                    var tempx = []
+                    var tempy = []
+                    while (t != 0) {
+
+                        tempy.push(t)
+                        tempx.push(j)
+                        t = t - 1
                         if (this.grid[t][j] != 0) {
-                            console.log(t, j)
-                            if (j != fastmovexarr[fastmoveyarr.indexOf(t)]) {
-                                fastmoveyarr.push(t)
-                                fastmovexarr.push(j)
+                            //console.log(t, j)
+
+                            if (j != fastmovexarr[fastmoveyarr.indexOf(t)]&&t != fastmoveyarr[fastmoveyarr.indexOf(t)]) {
+                                fastmoveyarr = fastmoveyarr.concat(tempy)
+                                fastmovexarr = fastmovexarr.concat(tempx)
                             }
+
                         }
                     }
                 }
             }
         }
-
         if (this.fallingPiece !== null) {
             this.fallingPiece.renderPiece()
 
